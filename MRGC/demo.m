@@ -46,10 +46,18 @@ for i = 1 : numel(files)
                 %data{3} = mirna;
 
                 fprintf('size(A) is %s\n', mat2str(size(data{1})))
+                %{
                 par.num_bases = 10 * ones(size(data,2), 1);
                 par.alpha = 0.01 * ones(size(data,2), 1);
                 par.beta = 0.001 * ones(size(data,2), 1);
                 par.num_iters = 50;
+                %}
+                
+                par.num_bases = dic * ones(size(data,2), 1);
+                par.alpha = alpha * ones(size(data,2), 1);
+                par.beta = beta * ones(size(data,2), 1);
+                par.num_iters = 25;
+                
                 [idx_eg, idx_rc] = process_TCGA_datasets(data, par);
                 sampleNames = fieldnames(fexp);
 
